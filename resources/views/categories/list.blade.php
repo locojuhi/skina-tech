@@ -26,7 +26,7 @@
                             {{$category->name}}
                         </td>
                         <td>
-                            {{$category->parent_id}}
+                            {{$category->parent_category['name']}}
                         </td>
                         <td>
                             <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">

@@ -16,7 +16,7 @@
             <table class="table table-striped table-bordered">
                 <tr class="thead-dark">
                     <th>Nombre de categoria</th>
-                    <th>Categoria Padre</th>
+                    <th>Categoria</th>
                     <th>Acciones</th>
                 </tr>
 
@@ -26,7 +26,7 @@
                             {{$product->name}}
                         </td>
                         <td>
-                            {{$product->parent_id}}
+                            {{$product->category['name']}}
                         </td>
                         <td>
                             <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
