@@ -5,7 +5,7 @@
         <div class="card-header">
             <i class="fa fa-table"></i> Categorias
             <div class="pull-right">
-                <a href="{{action('CategoryController@create')}}" class="btn btn-success">
+                <a href="{{action('UserController@create')}}" class="btn btn-success">
                     <span>
                         <i class="fa fa-plus"></i>
                     </span>
@@ -15,30 +15,31 @@
         <div class="card-body">
             <table class="table table-striped table-bordered">
                 <tr class="thead-dark">
-                    <th>Nombre de categoria</th>
-                    <th>Categoria Padre</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Email</th>
+                    <th>username</th>
                     <th>Acciones</th>
                 </tr>
 
-                @foreach ($categories as $category)
-                    @if($category->id == 1)
-                        @continue
-                    @endif
+                @foreach ($users as $user)
                     <tr>
                         <td>
-                            {{$category->name}}
+                            {{ucfirst($user->first_name)}}
                         </td>
                         <td>
-                            {{$category->parent_category['name']}}
+                            {{ucfirst($user->last_name)}}
                         </td>
+                        <td>{{$user->email}}</td>
+                        <td>{{$user->username}}</td>
                         <td>
                             <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                                 <div class="btn-group mr-2" role="group" aria-label="First group">
-                                    <a href="{{action('CategoryController@edit', ['id' => $category->id])}}" class="btn btn-primary">Editar</a>
+                                    <a href="{{action('UserController@edit', ['id' => $user->id])}}" class="btn btn-primary">Editar</a>
                                 </div>
 
                                 <div class="btn-group" role="group" aria-label="Third group">
-                                    <form method="POST" action="{{action('CategoryController@destroy', ['id' => $category->id] )}}">
+                                    <form method="POST" action="{{action('UserController@destroy', ['id' => $user->id] )}}">
                                         {{ method_field('DELETE') }}
                                         {{ csrf_field() }}
                                         <input type="submit" class="btn btn-danger" value="Eliminar">
@@ -50,7 +51,7 @@
                 @endforeach
             </table>
             <nav>
-                {{ $categories->links() }}
+                {{ $users->links() }}
             </nav>
         </div>
     </div

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Category;
+use App\Status;
 
 class CategoryController extends Controller
 {
@@ -33,7 +34,9 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('categories.create');
+        $statuses = Status::all();
+        $categories = Category::all();
+        return view('categories.create', compact('statuses', 'categories'));
     }
 
     /**
@@ -46,6 +49,7 @@ class CategoryController extends Controller
     {
         $category = Category::create([
             'name' => $request['name'],
+            'status_id' => $request['status_id'],
             'parent_id' => $request['parent_id']
         ]);
         if($category){
@@ -74,8 +78,10 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
+        $statuses = Status::all();
         $category = Category::find($id);
-        return view('categories.edit', compact('category'));
+        $categories = Category::all();
+        return view('categories.edit', compact('category', 'statuses', 'categories'));
     }
 
     /**

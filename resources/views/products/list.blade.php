@@ -17,6 +17,8 @@
                 <tr class="thead-dark">
                     <th>Nombre de categoria</th>
                     <th>Categoria</th>
+                    <th>Stock</th>
+                    <th>Precio</th>
                     <th>Acciones</th>
                 </tr>
 
@@ -27,6 +29,14 @@
                         </td>
                         <td>
                             {{$product->category['name']}}
+                        </td>
+
+                        <td>
+                            {{$product->stock}}
+                        </td>
+
+                        <td>
+                            {{$product->price}}
                         </td>
                         <td>
                             <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">

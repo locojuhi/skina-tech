@@ -5,8 +5,31 @@
 
 <div class="form-group">
     <label for="category_id">Categoria</label>
-    <input class="form-control" id="category_id" name="category_id" type="text" placeholder="Categoria" value="{{ (isset($product->category_id) ? old('name', $product->category_id): '')}}">
+    <select class="form-control" name="category_id" id="category_id">
+        @foreach($categories as $category)
+            @if($category->id == 1)
+                @continue
+            @endif
+            @if($category->id == $product->category_id)
+                <option value="{{$category->id}}" selected >{{$category->name}}</option>
+            @else
+                <option value="{{$category->id}}">{{$category->name}}</option>
+            @endif
+        @endforeach
+    </select>
 </div>
+
+<div class="form-group">
+    <label for="stock">Cantidaden inventario</label>
+    <input class="form-control" id="stock" name="stock" type="text" placeholder="Cantidad en inventario" value="{{ (isset($product->stock) ? old('name', $product->stock): '')}}">
+</div>
+
+<div class="form-group">
+    <label for="price">Precio</label>
+    <input class="form-control" id="price" name="price" type="text" placeholder="Precio" value="{{ (isset($product->price) ? old('name', $product->price): '')}}">
+</div>
+
+
 
 
 <input type="submit" class="btn btn-primary btn-block">

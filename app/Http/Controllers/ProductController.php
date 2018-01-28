@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Category;
 
 class ProductController extends Controller
 {
@@ -33,7 +34,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('products.create');
+        //$categories = Category::where('active', true)->orderBy('name')->lists('name', 'id');
+        $categories= Category::all();
+        return view('products.create',compact('categories'));
     }
 
     /**
@@ -46,6 +49,8 @@ class ProductController extends Controller
     {
         $product = Product::create([
             'name' => $request['name'],
+            'stock' => $request['stock'],
+            'price' => $request['price'],
             'category_id' => $request['category_id']
         ]);
         if($product){
@@ -74,8 +79,9 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
+        $categories= Category::all();
         $product = Product::find($id);
-        return view('products.edit', compact('product'));
+        return view('products.edit', compact('product', 'categories'));
     }
 
     /**

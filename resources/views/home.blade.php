@@ -1,11 +1,10 @@
-@extends('layouts.app')
+@extends('common.sbadmin')
 
 @section('content')
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
 
                 <div class="panel-body">
                     @if (session('status'))
@@ -14,7 +13,7 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    Bienvenido {{ucfirst(auth()->user()->first_name)}}
                 </div>
             </div>
         </div>
