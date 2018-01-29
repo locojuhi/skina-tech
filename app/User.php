@@ -15,7 +15,12 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'first_name',
+        'last_name',
+        'username',
+        'role_id',
+        'email',
+        'password',
     ];
 
     /**
@@ -26,4 +31,23 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function setPasswordAttribute($password){
+        if(!empty($password)){
+            $this->attributes['password'] = bcrypt($password);
+        }
+    }
+
+    public function updateuser($request, $id){
+        $user = User::find($id);
+        $user->first_name   = $request['first_name'];
+        $user->last_name    = $request['last_name'];
+        $user->email        = $request['email'];
+        $user->username     = $request['username'];
+        $user->role_id      = $request['role_id'];
+        $user->password     = $request['password'];
+
+        $user->save();
+        //Session::flash('message', 'User updated Successfully');
+    }
 }
