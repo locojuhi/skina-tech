@@ -43,6 +43,7 @@ class User extends Authenticatable
         $user->last_name    = $request['last_name'];
         $user->email        = $request['email'];
         $user->username     = $request['username'];
+        $user->role_id      = $request['role_id'];
         $user->password     = $request['password'];
 
         $user->save();

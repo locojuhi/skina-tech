@@ -10,8 +10,12 @@
             @if($category->id == 1)
                 @continue
             @endif
-            @if($category->id == $product->category_id)
-                <option value="{{$category->id}}" selected >{{$category->name}}</option>
+            @if(isset($product)){
+                @if($category->id == $product->category_id)
+                    <option value="{{$category->id}}" selected >{{$category->name}}</option>
+                @else
+                    <option value="{{$category->id}}">{{$category->name}}</option>
+                @endif
             @else
                 <option value="{{$category->id}}">{{$category->name}}</option>
             @endif

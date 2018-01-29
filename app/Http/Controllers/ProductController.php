@@ -14,6 +14,8 @@ class ProductController extends Controller
     {
         $this->middleware('checkauth');
 
+        $this->middleware('checkpermission', ['only' => ['create','edit']]);
+
     }
     
     /**

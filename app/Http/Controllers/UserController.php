@@ -6,9 +6,16 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Role;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('isadmin', ['only' => ['edit','update','show']]);
+        $this->middleware('checkpermission', ['only' => ['create','index']]);
+
+    }
     /**
      * Display a listing of the resource.
      *
@@ -27,7 +34,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        $roles = Role::all();
+        return view('users.create', compact('roles'));
     }
 
     /**
@@ -43,7 +51,7 @@ class UserController extends Controller
             'last_name' => $request['last_name'],
             'email' => $request['email'],
             'username' => $request['username'],
-            'password' => bcrypt($request['password']),
+            'password' => $request['password'],
         ]);
         if($user){
             return  redirect()->route('users.show', ['id' => $user->id]);
@@ -71,8 +79,9 @@ class UserController extends Controller
      */
     public function edit($id)
     {
+        $roles = Role::all();
         $user = User::find($id);
-        return view('users.edit', compact('user'));
+        return view('users.edit', compact('user', 'roles'));
     }
 
     /**

@@ -13,6 +13,7 @@ class CategoryController extends Controller
     public function __construct()
     {
         $this->middleware('checkauth');
+         $this->middleware('checkpermission', ['only' => ['create','edit']]);
 
     }
     

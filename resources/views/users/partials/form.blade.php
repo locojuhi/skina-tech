@@ -18,6 +18,25 @@
     <input class="form-control" id="email" name="email" type="text" placeholder="Email" value="{{ (isset($user->email) ? old('email', $user->email): '')}}">
 </div>
 
+<div class="form-group">
+    <label for="role_id">Rol</label>
+    <select class="form-control" name="role_id" id="role_id">
+        @foreach($roles as $role)
+            @if(isset($user))
+                @if($role->id == $user->role_id)
+                    <option value="{{$role->id}}" selected >{{$role->name}}</option>
+                @else
+                    <option value="{{$role->id}}">{{$role->name}}</option>
+                @endif
+            @else
+                <option value="{{$role->id}}">{{$role->name}}</option>
+            @endif
+                
+           
+        @endforeach
+    </select>
+</div>
+
 
 <div class="form-group">
     <label for="password">Contraseña</label>
