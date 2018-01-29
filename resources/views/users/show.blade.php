@@ -7,13 +7,15 @@
                 <h5 class="card-title"></h5>
                 <div class="row">
                     <div class="col-md-4"><a href="{{action('UserController@edit', ['id' => $user->id])}}" class="btn btn-primary">Editar</a></div>
-                    <div class="col-md-4">
-                        <form method="POST" action="{{action('UserController@destroy', ['id' => $user->id] )}}">
-                            {{ method_field('DELETE') }}
-                            {{ csrf_field() }}
-                            <input type="submit" class="btn btn-danger" value="Eliminar">
-                        </form>
-                    </div>
+                    @if(auth()->user()->role_id != 2)
+                        <div class="col-md-4">
+                            <form method="POST" action="{{action('UserController@destroy', ['id' => $user->id] )}}">
+                                {{ method_field('DELETE') }}
+                                {{ csrf_field() }}
+                                <input type="submit" class="btn btn-danger" value="Eliminar">
+                            </form>
+                        </div>
+                    @endif
                     <div class="col-md-4"></div>
                 </div>
             </div>

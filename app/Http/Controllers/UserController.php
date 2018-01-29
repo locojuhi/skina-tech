@@ -50,6 +50,7 @@ class UserController extends Controller
             'first_name' => $request['first_name'],
             'last_name' => $request['last_name'],
             'email' => $request['email'],
+            'role_id' => $request['role_id'],
             'username' => $request['username'],
             'password' => $request['password'],
         ]);

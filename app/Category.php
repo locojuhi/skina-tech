@@ -17,6 +17,9 @@ class Category extends Model
         return $this->hasMany('App\Product');
     }
 
+    public function parent_active(){
+        return dd(1);
+    }
 
     protected $dates = ['deleted_at'];
     protected $fillable = [

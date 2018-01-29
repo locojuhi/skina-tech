@@ -43,14 +43,15 @@
                                 <div class="btn-group mr-2" role="group" aria-label="First group">
                                     <a href="{{action('ProductController@edit', ['id' => $product->id])}}" class="btn btn-primary">Editar</a>
                                 </div>
-
-                                <div class="btn-group" role="group" aria-label="Third group">
-                                    <form method="POST" action="{{action('ProductController@destroy', ['id' => $product->id] )}}">
-                                        {{ method_field('DELETE') }}
-                                        {{ csrf_field() }}
-                                        <input type="submit" class="btn btn-danger" value="Eliminar">
-                                    </form>
-                                </div>
+                                @if(auth()->user()->role_id != 2)
+                                    <div class="btn-group" role="group" aria-label="Third group">
+                                        <form method="POST" action="{{action('ProductController@destroy', ['id' => $product->id] )}}">
+                                            {{ method_field('DELETE') }}
+                                            {{ csrf_field() }}
+                                            <input type="submit" class="btn btn-danger" value="Eliminar">
+                                        </form>
+                                    </div>
+                                @endif
                             </div>
                         </td>
                     </tr>
